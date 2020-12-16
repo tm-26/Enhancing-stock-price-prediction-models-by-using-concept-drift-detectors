@@ -1,6 +1,6 @@
 This code is for the paper "Enhancing stock price prediction models by using concept drift detectors"
 
-The detector.py file found in the Concept Drift Detector folder tests the HDDMa concept drift detector.
+The detector.py file found in the Concept Drift Detectors folder tests the HDDMa concept drift detector.
 To make use of this file python 3.7.7 (or a more recent version) needs to be installed with the following libraries:
 mathplotlib >= 3.3.1
 pandas >= 1.1.0
@@ -22,6 +22,23 @@ It takes in the following 4 arguments:
  where:
        0 = default value (0.05)
 
+The detectors.py file found in the Concept Drift Detectors folder tests 4 diffent concept drift detectors.
+To make use of this file python 3.7.7 (or a more recent version) needs to be installed with the following libraries:
+pandas >= 1.1.0
+scikit-multiflow >= 0.5.3
+
+It takes in the following 2 arguments:
+ args[0] --> Controls which data-set is going to be used:
+ where:
+       0 = ACL18
+       Bigger then 0 = KDD17
+ args[1] --> Controls which concept drift detector is going to be used
+ where:
+	0 = EDDM
+	1 = HDDMa
+	2 = HDDMw
+	3 = PH
+       
 The models.py file found in the models folder tests three diffrent NN models.
 To make use of this file python 3.6.12 (or a more recent version) needs to be installed with the following libraries:
 numpy = 1.14.5

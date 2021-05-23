@@ -1,0 +1,2 @@
+model_checkpoint_path: "alstm-Stocknet"
+all_model_checkpoint_paths: "alstm-Stocknet"

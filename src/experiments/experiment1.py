@@ -13,7 +13,7 @@ if __name__ == "__main__":
         Parameters:
         args[0] --> Selects the model
         possible inputs = "LSTM" or "ALSTM" or "AdvALSTM"
-        args[1] --> Selects the data-set 
+        args[1] --> Selects the dataset 
         possible inputs = "stocknet" or "KDD17"
     """""
 

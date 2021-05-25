@@ -1,3 +1,8 @@
+"""
+Experiment 2 was conducted in order to check how many concept drifts each concept drift detector detects in the KDD17
+and the Stocknet dataset.
+"""
+
 import os
 import pandas
 import skmultiflow.drift_detection
@@ -7,11 +12,11 @@ from statistics import mean
 
 if __name__ == "__main__":
     """""
-        Parameters:
-        args[0] --> Selects the concept drift detector
-        possible inputs = "EDDM" or "HDDMa" or "HDDMw" or or "KSWIN" "PH"
-        args[1] --> Selects the dataset 
-        possible inputs = "stocknet" or "KDD17"
+    Parameters:
+    args[0] --> Selects the concept drift detector
+    possible inputs = "EDDM" or "HDDMa" or "HDDMw" or or "KSWIN" "PH"
+    args[1] --> Selects the dataset 
+    possible inputs = "stocknet" or "KDD17"
     """""
 
     # Get arguments
@@ -53,7 +58,7 @@ if __name__ == "__main__":
         elif args[0] == "ph" or args[0] == '4' or args[0] == 4:
             detector = skmultiflow.drift_detection.page_hinkley.PageHinkley()
         else:
-            print("Argument error: " + str(args[1]) + " is not a valid concept drift detector")
+            print("Argument error: " + str(args[0]) + " is not a valid concept drift detector")
             exit(-4)
 
         previous = 0
@@ -69,9 +74,9 @@ if __name__ == "__main__":
 
             if detector.detected_change():
                 numberOfConcepts[-1] += 1
-        print("Concept Drift occurred " + str(numberOfConcepts[-1]) + " times")
+        print("Concept Drift detected " + str(numberOfConcepts[-1]) + " times")
         numberOfConcepts.append(0)
 
-    print("Average number of concept drifts: " + str(round(mean(numberOfConcepts))))
+    print("Average number of concept drifts detected: " + str(round(mean(numberOfConcepts))))
     print("Total number of drifts detected: " + str(sum(numberOfConcepts)))
-    print("Stock " + stocks[numberOfConcepts.index(max(numberOfConcepts))][:-4] + " experienced the largest amount of concept drifts, with a total of " + str(max(numberOfConcepts)) + " concept drifts")
+    print("Stock " + stocks[numberOfConcepts.index(max(numberOfConcepts))][:-4] + " experienced the largest amount of concept drifts, with a total of " + str(max(numberOfConcepts)) + " detected concept drifts")

@@ -10,11 +10,11 @@ import sys
 
 if __name__ == "__main__":
     """""
-        Parameters:
-        args[0] --> Selects the model
-        possible inputs = "LSTM" or "ALSTM" or "AdvALSTM"
-        args[1] --> Selects the dataset 
-        possible inputs = "stocknet" or "KDD17"
+    Parameters:
+    args[0] --> Selects the model
+    possible inputs = "LSTM" or "ALSTM" or "AdvALSTM"
+    args[1] --> Selects the dataset 
+    possible inputs = "stocknet" or "KDD17"
     """""
 
     # Get arguments

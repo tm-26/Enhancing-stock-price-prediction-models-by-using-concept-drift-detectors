@@ -1,3 +1,9 @@
+"""
+Experiment 3 tests for type II errors by testing the concept drift detectors on ten different periods in time where
+concept drift occurred beyond any unreasonable doubt.
+"""
+
+
 import os
 import pandas
 import skmultiflow.drift_detection
@@ -16,8 +22,7 @@ if __name__ == "__main__":
     if len(sys.argv) >= 2:
         detectorType = sys.argv[1]
     else:
-        detectorType = input("Enter parameter: ").split(" ")[0]
-        # detectorType = 0
+        detectorType = input("Enter parameter: ").split(' ')[0]
 
     if type(detectorType) is str:
         detectorType = detectorType.lower()

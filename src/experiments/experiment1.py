@@ -14,7 +14,7 @@ if __name__ == "__main__":
     args[0] --> Selects the model
     possible inputs = "LSTM" or "ALSTM" or "AdvALSTM"
     args[1] --> Selects the dataset 
-    possible inputs = "stocknet" or "KDD17"
+    possible inputs = "Stocknet" or "KDD17"
     """""
 
     # Get arguments
@@ -23,7 +23,7 @@ if __name__ == "__main__":
     if len(sys.argv) >= 3:
         args.extend((sys.argv[1], sys.argv[2]))
     else:
-        args = input("Enter parameters: ").split(" ")
+        args = input("Enter parameters: ").split(' ')
 
     for i in range(len(args)):
         if type(args[i]) is str:

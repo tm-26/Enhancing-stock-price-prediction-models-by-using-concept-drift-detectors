@@ -16,7 +16,7 @@ if __name__ == "__main__":
     args[0] --> Selects the concept drift detector
     possible inputs = "EDDM" or "HDDMa" or "HDDMw" or or "KSWIN" "PH"
     args[1] --> Selects the dataset 
-    possible inputs = "stocknet" or "KDD17"
+    possible inputs = "Stocknet" or "KDD17"
     """""
 
     # Get arguments
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     if len(sys.argv) >= 3:
         args.extend((sys.argv[1], sys.argv[2]))
     else:
-        args = input("Enter parameters: ").split(" ")
+        args = input("Enter parameters: ").split(' ')
 
     for i in range(len(args)):
         if type(args[i]) is str:
@@ -37,6 +37,7 @@ if __name__ == "__main__":
         os.chdir("../../data/kdd17/price_long_50")
     else:
         print("Argument error: " + str(args[1]) + " not a valid data-set")
+        exit(-1)
 
     # Variable Declaration
     numberOfConcepts = [0]

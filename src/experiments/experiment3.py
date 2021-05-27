@@ -16,7 +16,7 @@ if __name__ == "__main__":
     possible inputs = "EDDM" or "HDDMa" or "HDDMw" or or "KSWIN" "PH"
     """""
 
-    # Get arguments
+    # Handle arguments
     detectorType = None
 
     if len(sys.argv) >= 2:

@@ -1,7 +1,5 @@
-import argparse
 import csv
 import math
-import matplotlib.pyplot
 import numpy
 import os
 import pandas
@@ -435,40 +433,40 @@ def main(forcePreProcessing, method, conceptSplitSize=5):
     return str(finalACC) + " ±" + str(statistics.stdev(accList)), str(finalMCC) + " ±" + str(statistics.stdev(mccList))
 
 
-if __name__ == "__main__":
-
-    # Handle arguments
-    argParser = argparse.ArgumentParser()
-    # argParser.add_argument("-m", "--model", help="Model that is going to be used: pure_lstm or att_lstm or adv_att_lstm", type=str, default="pure_lstm")
-    argParser.add_argument("-me", "--method", help="Method that is going to be used", type=int, default=2)
-    argParser.add_argument("-f", "--first", type=int, default=26)
-    argParser.add_argument("-l", "--last", type=int, default=26)
-
-    args = argParser.parse_args()
-
-    sys.stdout = open(os.devnull, 'w')  # Remove normal printing due to excess amount of printing in pred_lstm.py
-    absPath = os.path.abspath('.')
-    if 0 >= args.method <= 5:
-        printMe("Method needs to be a value between 1 and 4 not " + str(args.method))
-        exit(1)
-
-    if args.method == 1:
-        main(True, args.method)
-    else:
-        results = pandas.read_csv("AdvLstm with CDD Results (Method " + str(args.method) + ").csv")
-        complete = []
-        for i in results["Concept split size"]:
-            complete.append(int(i))
-
-        for i in range(args.first, args.last + 1):
-            if i not in complete:
-                printMe("+------------------------------+")
-                printMe("Doing method " + str(args.method) + ' (' + str(i) + ')')
-                printMe("+------------------------------+")
-                acc, mcc = main(True, args.method, i)
-                os.chdir(absPath)
-                results = results.append({"Concept split size": i, "ACC": acc, "MCC": mcc}, ignore_index=True)
-                results.to_csv("AdvLstm with CDD Results (Method " + str(args.method) + ").csv", index=False)
-        results.plot(x="Concept split size", y="ACC")
-        results.plot(x="Concept split size", y="MCC")
-        matplotlib.pyplot.show()
+# if __name__ == "__main__":
+#
+#     # Handle arguments
+#     argParser = argparse.ArgumentParser()
+#     # argParser.add_argument("-m", "--model", help="Model that is going to be used: pure_lstm or att_lstm or adv_att_lstm", type=str, default="pure_lstm")
+#     argParser.add_argument("-me", "--method", help="Method that is going to be used", type=int, default=2)
+#     argParser.add_argument("-f", "--first", type=int, default=26)
+#     argParser.add_argument("-l", "--last", type=int, default=26)
+#
+#     args = argParser.parse_args()
+#
+#     sys.stdout = open(os.devnull, 'w')  # Remove normal printing due to excess amount of printing in pred_lstm.py
+#     absPath = os.path.abspath('.')
+#     if 0 >= args.method <= 5:
+#         printMe("Method needs to be a value between 1 and 4 not " + str(args.method))
+#         exit(1)
+#
+#     if args.method == 1:
+#         main(True, args.method)
+#     else:
+#         results = pandas.read_csv("AdvLstm with CDD Results (Method " + str(args.method) + ").csv")
+#         complete = []
+#         for i in results["Concept split size"]:
+#             complete.append(int(i))
+#
+#         for i in range(args.first, args.last + 1):
+#             if i not in complete:
+#                 printMe("+------------------------------+")
+#                 printMe("Doing method " + str(args.method) + ' (' + str(i) + ')')
+#                 printMe("+------------------------------+")
+#                 acc, mcc = main(True, args.method, i)
+#                 os.chdir(absPath)
+#                 results = results.append({"Concept split size": i, "ACC": acc, "MCC": mcc}, ignore_index=True)
+#                 results.to_csv("AdvLstm with CDD Results (Method " + str(args.method) + ").csv", index=False)
+#         results.plot(x="Concept split size", y="ACC")
+#         results.plot(x="Concept split size", y="MCC")
+#         matplotlib.pyplot.show()

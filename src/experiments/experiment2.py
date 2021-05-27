@@ -19,7 +19,7 @@ if __name__ == "__main__":
     possible inputs = "Stocknet" or "KDD17"
     """""
 
-    # Get arguments
+    # Handle arguments
     args = []
 
     if len(sys.argv) >= 3:

@@ -1,6 +1,5 @@
-"""
-Experiment 4 aims to evaluate the most optimal drift confidence parameter value for the HDDMa concept drift detector.
-"""
+# Experiment 4 aims to evaluate the most optimal drift confidence parameter value for the HDDMa concept drift detector.
+
 
 import os
 import pandas
@@ -15,6 +14,8 @@ if __name__ == "__main__":
         possible inputs = "Stocknet" or "KDD17"
         args[1] = HDDM_A drift confidence (default value = 0.01)
     """""
+
+    # Handle arguments
     args = []
 
     if len(sys.argv) == 2:

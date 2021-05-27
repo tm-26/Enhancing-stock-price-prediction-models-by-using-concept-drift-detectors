@@ -1,8 +1,5 @@
 """
 Experiment 1 was conducted in order to ensure that the chosen Adv-ALSTM model was properly replicated.
-
-This script creates and tests three different NN models by making use of code found in:
-https://github.com/fulifeng/Adv-ALSTM
 """
 
 import os

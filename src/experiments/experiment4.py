@@ -1,5 +1,5 @@
 """
-
+Experiment 4 aims to evaluate the most optimal drift confidence parameter value for the HDDMa concept drift detector.
 """
 
 import os

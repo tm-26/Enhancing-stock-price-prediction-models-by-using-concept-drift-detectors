@@ -25,27 +25,26 @@ if __name__ == "__main__":
         else:
             try:
                 splitDays = int(sys.argv[1])
-                if 3 > splitDays < 31:
+                if not 3 <= splitDays <= 30:
                     raise ValueError
                 elif splitDays == 0:
                     splitDays = 5
             except ValueError:
                 print("Argument error: " + str(sys.argv[1]) + " not a valid splitDays parameter")
-                print("splitDays parameter needs to be an integer between 3 and 31")
+                print("splitDays parameter needs to be an integer between 3 and 30")
                 exit(-2)
 
-    if not os.path.exists("../../results"):
-        os.makedirs("../../results")
-    
-    if not os.path.exists("../../results/method2.csv"):
-        file = open("../../results/method2.csv", "w+")
-        writer = csv.writer(file)
-        writer.writerow(["splitDays", "ACC", "MCC"])
-        file.close()
-
-    results = pandas.read_csv("../../results/method2.csv")
-
     if splitDays == -1:
+        if not os.path.exists("../../results"):
+            os.makedirs("../../results")
+
+        if not os.path.exists("../../results/method2.csv"):
+            file = open("../../results/method2.csv", "w+")
+            writer = csv.writer(file)
+            writer.writerow(["splitDays", "ACC", "MCC"])
+            file.close()
+
+        results = pandas.read_csv("../../results/method2.csv")
 
         complete = []
         for i in results["splitDays"]:
@@ -59,8 +58,27 @@ if __name__ == "__main__":
                 acc, mcc = main(True, 2, i)
                 results = results.append({"splitDays": i, "ACC": acc, "MCC": mcc}, ignore_index=True)
                 results.to_csv("../../results/method2.csv", index=False)
-        results.plot(x="splitDays", y="ACC")
-        results.plot(x="splitDays", y="MCC")
+
+        splitDays = []
+        acc = []
+        mcc = []
+
+        for i in results.iterrows():
+            splitDays.append(int(i[1]["splitDays"]))
+            acc.append(float(i[1]["ACC"].split(' ')[0]) * 100)
+            mcc.append(float(i[1]["MCC"].split(' ')[0]))
+
+        matplotlib.pyplot.plot(splitDays, acc)
+        matplotlib.pyplot.xlabel("splitDays parameter")
+        matplotlib.pyplot.ylabel("ACC")
+        matplotlib.pyplot.show()
+
+        matplotlib.pyplot.plot(splitDays, mcc)
+        matplotlib.pyplot.xlabel("splitDays parameter")
+        matplotlib.pyplot.ylabel("MCC")
         matplotlib.pyplot.show()
     else:
-        print("develop me")
+        print("+------------------------------+")
+        print("Starting splitDays parameter = " + str(splitDays))
+        print("+------------------------------+")
+        acc, mcc = main(True, 2, splitDays)

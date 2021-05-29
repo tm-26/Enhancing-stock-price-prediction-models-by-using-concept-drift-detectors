@@ -316,6 +316,9 @@ def main(forcePreProcessing, method, conceptSplitSize=5):
             # accList.append(statistics.mean(currentAccList))
             # mccList.append(statistics.mean(currentMccList))
 
+            if len(currentAccList) == 0 or len(currentMccList) == 0:
+                continue
+
             accList.extend(currentAccList)
             mccList.extend(currentMccList)
             stdAccList.append(statistics.mean(currentAccList))
@@ -416,8 +419,7 @@ def main(forcePreProcessing, method, conceptSplitSize=5):
         printMe("----" + listOfConcepts[i] + "----")
         printMe("ACC = " + str(result["acc"]))
         printMe("MCC = " + str(result["mcc"]))
-        # printMe("ACC = " + str(sum(accList) / len(accList)))
-        # printMe("MCC = " + str(sum(mccList) / len(mccList)))
+
 
     finalACC = sum(accList) / len(accList)
     finalMCC = sum(mccList) / len(mccList)
@@ -429,6 +431,8 @@ def main(forcePreProcessing, method, conceptSplitSize=5):
     printMe("with standard deviation = " + str(statistics.stdev(stdMccList)))
 
     os.chdir(absPath)
+    sys.stdout = sys.__stdout__
+
 
     return str(finalACC) + " ±" + str(statistics.stdev(accList)), str(finalMCC) + " ±" + str(statistics.stdev(mccList))
 

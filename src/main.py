@@ -331,7 +331,11 @@ def main(forcePreProcessing, method, conceptSplitSize=5):
                 listOfConcepts[i + 1].split(' ', 1)[0]:
             if os.path.exists("../../../models/advAlstmTemp-KDD17"):
                 shutil.rmtree("../../../models/advAlstmTemp-KDD17")
-            pure_LSTM.set_model_path("../../../models/kdd17_alstm/model")
+
+            os.mkdir("../../../models/advAlstmTemp-KDD17")
+            copy_tree("../../../models/advAlstm-KDD17", "../../../models/advAlstmTemp-KDD17")
+
+            pure_LSTM.set_model_path("../../../models/advAlstmTemp-KDD17/model")
 
         # Method 4
         if isMethod4 or isMethod5:
@@ -340,7 +344,11 @@ def main(forcePreProcessing, method, conceptSplitSize=5):
                 # re-init model
                 if os.path.exists("../../../models/advAlstmTemp-KDD17"):
                     shutil.rmtree("../../../models/advAlstmTemp-KDD17")
-                pure_LSTM.set_model_path("../../../models/kdd17_alstm/model")
+
+                os.mkdir("../../../models/advAlstmTemp-KDD17")
+                copy_tree("../../../models/advAlstm-KDD17", "../../../models/advAlstmTemp-KDD17")
+
+                pure_LSTM.set_model_path("../../../models/advAlstmTemp-KDD17/model")
 
                 firstTest = True
                 currentlyWaiting = True
@@ -434,7 +442,7 @@ def main(forcePreProcessing, method, conceptSplitSize=5):
     sys.stdout = sys.__stdout__
 
 
-    return str(finalACC) + " ±" + str(statistics.stdev(accList)), str(finalMCC) + " ±" + str(statistics.stdev(mccList))
+    return str(finalACC * 100) + " ±" + str(statistics.stdev(accList)), str(finalMCC) + " ±" + str(statistics.stdev(mccList))
 
 
 # if __name__ == "__main__":

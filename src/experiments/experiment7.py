@@ -38,13 +38,13 @@ if __name__ == "__main__":
         if not os.path.exists("../../results"):
             os.makedirs("../../results")
 
-        if not os.path.exists("../../results/method2.csv"):
-            file = open("../../results/method2.csv", "w+")
+        if not os.path.exists("../../results/method3.csv"):
+            file = open("../../results/method3.csv", "w+")
             writer = csv.writer(file)
             writer.writerow(["splitDays", "ACC", "MCC"])
             file.close()
 
-        results = pandas.read_csv("../../results/method2.csv")
+        results = pandas.read_csv("../../results/method3.csv")
 
         complete = []
         for i in results["splitDays"]:
@@ -55,9 +55,9 @@ if __name__ == "__main__":
                 print("+------------------------------+")
                 print("Starting splitDays parameter = " + str(i))
                 print("+------------------------------+")
-                acc, mcc = main(True, 2, i)
+                acc, mcc = main(True, 3, i)
                 results = results.append({"splitDays": i, "ACC": acc, "MCC": mcc}, ignore_index=True)
-                results.to_csv("../../results/method2.csv", index=False)
+                results.to_csv("../../results/method3.csv", index=False)
 
         splitDays = []
         acc = []
@@ -65,7 +65,7 @@ if __name__ == "__main__":
 
         for i in results.iterrows():
             splitDays.append(int(i[1]["splitDays"]))
-            acc.append(float(i[1]["ACC"].split(' ')[0]))
+            acc.append(float(i[1]["ACC"].split(' ')[0]) * 100)
             mcc.append(float(i[1]["MCC"].split(' ')[0]))
 
         matplotlib.pyplot.plot(splitDays, acc)
@@ -81,4 +81,4 @@ if __name__ == "__main__":
         print("+------------------------------+")
         print("Starting splitDays parameter = " + str(splitDays))
         print("+------------------------------+")
-        acc, mcc = main(True, 2, splitDays)
+        acc, mcc = main(True, 3, splitDays)

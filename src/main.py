@@ -72,13 +72,6 @@ def saveConcept(name, concept, dates, file):
 
 
 def main(forcePreProcessing, method, conceptSplitSize=5):
-    """
-       forcePreProcessing --> If True will delete the current pre-processed files and re-create them
-       method = 1 --> After a concept drift has occurred, train on the previous data distribution
-       method = 2 --> After a concept drift has occurred, train on that concept in intervals
-       method = 3 --> After a concept drift has occurred, forget all new training data, and continue like method 2
-       method = 4 --> After a concept drift has occurred, systematically pick different combinations of previous concepts to remeber
-       """
 
     absPath = os.path.abspath('.')
 
@@ -355,7 +348,7 @@ def main(forcePreProcessing, method, conceptSplitSize=5):
 
                 # if changing stock
                 if listOfConcepts[i].split(' ', 1)[0][:-1] != listOfConcepts[i + 1].split(' ', 1)[0][:-1] or changingStock:
-                    printMe("changing stock")
+                    # printMe("changing stock")
                     if changingStock:
                         changingStock = False
                     learn = []

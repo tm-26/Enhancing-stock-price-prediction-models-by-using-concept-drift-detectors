@@ -3,7 +3,6 @@ Experiment 3 tests for type II errors by testing the concept drift detectors on 
 concept drift occurred beyond any unreasonable doubt.
 """
 
-
 import os
 import pandas
 import skmultiflow.drift_detection

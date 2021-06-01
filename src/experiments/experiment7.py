@@ -1,3 +1,5 @@
+# Experiment 7 evaluates method 3
+
 import csv
 import matplotlib.pyplot
 import os
@@ -65,7 +67,7 @@ if __name__ == "__main__":
 
         for i in results.iterrows():
             splitDays.append(int(i[1]["splitDays"]))
-            acc.append(float(i[1]["ACC"].split(' ')[0]) * 100)
+            acc.append(float(i[1]["ACC"].split(' ')[0]))
             mcc.append(float(i[1]["MCC"].split(' ')[0]))
 
         matplotlib.pyplot.plot(splitDays, acc)

@@ -1,3 +1,5 @@
+# Experiment 6 evaluates method 2
+
 import csv
 import matplotlib.pyplot
 import os
